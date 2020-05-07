@@ -69,7 +69,7 @@ where
 
             let path = match parts.path_and_query.as_ref().map(|pq| pq.query()).flatten() {
                 Some(q) => bytes::Bytes::from(format!("{}?{}", new_path, q)),
-                None =>bytes::Bytes::from(format!("{}", new_path))
+                None => bytes::Bytes::from(new_path.to_string()),
             };
 
             if let Ok(pq) = PathAndQuery::from_maybe_shared(path) {
